@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+    <script src="js/vue-light-gallery.umd.js" charset="utf-8"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>گالری</h1>
+        <p class="subtitle">گالری عکس.</p>
+        <light-gallery :images="images" :index="index" :disable-scroll="true" @close="index = null"></light-gallery>
+        <ul>
+            <li v-for="(image, imageIndex) in [
+              'img/thumb_1.jpeg',
+              'img/thumb_2.jpeg',
+              'img/thumb_3.jpeg',
+              'img/thumb_4.jpeg',
+            ]" :key="imageIndex" class="thumb" @click="index = imageIndex">
+                <img :src="image">
+            </li>
+        </ul>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
