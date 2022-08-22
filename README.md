@@ -1,4 +1,3 @@
 # eghamat24-training
-جهت جلوگیری از سوء استفاده از پروژه های nodejs و vuejs فقط نسخه کامپایل شده قرار داده شد!
-<br>
-سورس ها در مخزن شخصی میزبانی می شود!
+This Repo Is Binary Sources Of Projects!<br>
+Full Source Code In https://github.com/tahaghafuri/e24t/
