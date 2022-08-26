@@ -24,6 +24,6 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.0"
+    "gh-pages": "2.2.0"
   }
 }
