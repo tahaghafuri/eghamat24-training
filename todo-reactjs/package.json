@@ -6,8 +6,8 @@
   "dependencies": {
     "lodash.range": "^3.2.0",
     "moment": "^2.22.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "react-moment": "^0.7.9",
     "react-motion": "^0.5.2",
     "react-redux": "^5.0.7",
