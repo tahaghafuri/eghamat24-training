@@ -15,6 +15,9 @@ class AnalyzeController extends Controller
 
         $infos=APIController::get_info($url);
         $infos['title']=str_replace('</title>','',str_replace('<title>','',DOMController::filter($url,'title')));
+        $infos['robots']=URLController::get_info('https://'.parse_url($url,PHP_URL_HOST).'/robots.txt')['status'];
+        $infos['sitemap']=URLController::get_info('https://'.parse_url($url,PHP_URL_HOST).'/sitemap.xml')['status'];
+        $infos['infos']=URLController::get_url($url)->transferStats->handlerStats;
         $metas=APIController::metas($url);
         $links[0]=APIController::links($url,1); // href
         $links[1]=APIController::links($url,2); // alt
@@ -39,10 +42,6 @@ class AnalyzeController extends Controller
             'hs'=>$hs,
             'h1s'=>$h1s
         ]);
-        
-        // echo '<pre>';
-        // var_dump(URLController::get_url($url));
-        // echo '</pre>';
     }
 
 }

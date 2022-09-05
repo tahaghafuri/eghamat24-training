@@ -199,20 +199,28 @@
                         <tr style="height: 51px;">
                           <td class="u-table-cell">عنوان صفحه</td>
                           <td class="u-table-cell">
-                          @if(mb_strlen($infos['title']) < 70 || mb_strlen($infos['title']) < 50)
+                            @if(!empty($infos['title']))
+                            @if(mb_strlen($infos['title']) < 70 || mb_strlen($infos['title']) < 50)
                             کوتاه و نامناسب
-                          @else
-                            مناسب
-                          @endif
+                            @else
+                              مناسب
+                            @endif 
+                            @else
+                                ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 51px;">
                           <td class="u-table-cell">توضیحات صفحه</td>
                           <td class="u-table-cell">
-                            @if(mb_strlen($infos['title']) < 170 || mb_strlen($infos['title']) < 150)
+                            @if(!empty($infos['description']))
+                            @if(mb_strlen($infos['description']) < 170 || mb_strlen($infos['description']) < 150)
                             کوتاه و نامناسب
                             @else
                               مناسب
+                            @endif   
+                            @else
+                                ندارد
                             @endif
                           </td>
                         </tr>
@@ -243,10 +251,14 @@
                         <tr style="height: 52px;">
                           <td class="u-table-cell">مقایسه المان نام هدینگ و عنوان</td>
                           <td class="u-table-cell">
+                            @if(!empty($h1s[0]))
                             @if($h1s[0]!=$infos['title'])
-                              یکسان نیستند
+                            یکسان نیستند
                             @else
                               یکسانند
+                            @endif
+                            @else
+                                ندارد
                             @endif
                           </td>
                         </tr>
@@ -277,7 +289,7 @@
                         <tr style="height: 52px;">
                           <td class="u-table-cell">طول محتوای تگ h1</td>
                           <td class="u-table-cell">
-                            @if(count($h1s)!=0)
+                            @if(!empty($h1s[0]))
                               @if(mb_strlen($h1s[0])<60)
                                 مناسب
                               @else
@@ -309,51 +321,101 @@
                           <td class="u-table-cell">وضعیت</td>
                         </tr>
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">عنوان صفحه</td>
+                          <td class="u-table-cell">بررسی تگ‌های strong و b</td>
                           <td class="u-table-cell">
-                          
+                          @if(!empty($bs) && !empty($strongs))
+                            دارد
+                          @else
+                            ندارد
+                          @endif
                           </td>
                         </tr>
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">توضیحات صفحه</td>
+                          <td class="u-table-cell">فاویکون</td>
                           <td class="u-table-cell">
-
+                            @if(!empty($metas['shortcut icon']))
+                            دارد
+                            @else
+                            ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">المان caniocal</td>
+                          <td class="u-table-cell">تگ viewport</td>
                           <td class="u-table-cell">
-
+                            @if(!empty($metas['viewport']))
+                            دارد
+                            @else
+                            ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 52px;">
-                          <td class="u-table-cell">تگ robots</td>
+                          <td class="u-table-cell">تگ description</td>
                           <td class="u-table-cell">
-
+                            @if(!empty($metas['description']))
+                            دارد
+                            @else
+                            ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 52px;">
-                          <td class="u-table-cell">مقایسه المان نام هدینگ و عنوان</td>
+                          <td class="u-table-cell">فایل robots.txt</td>
                           <td class="u-table-cell">
-
+                            @if(!empty($infos['robots']))
+                            @if($infos['robots']==200 || $infos['robots']=='200')
+                            دارد
+                            @else
+                                ندارد
+                            @endif
+                            @else
+                                ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 52px;">
-                          <td class="u-table-cell">تگ های h2 تا h6</td>
+                          <td class="u-table-cell">سایت مپ</td>
                           <td class="u-table-cell">
-
+                            @if(!empty($infos['sitemap']))
+                            @if($infos['sitemap']==200 || $infos['sitemap']=='200')
+                            دارد
+                            @else
+                                ندارد
+                            @endif
+                            @else
+                                ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 52px;">
-                          <td class="u-table-cell">خصوصیات alt تصاویر</td>
+                          <td class="u-table-cell">حجم صفحه</td>
                           <td class="u-table-cell">
-
+                            @if(!empty($infos['infos']['size_download']))
+                            حجم صفحه {{ $infos['infos']['size_download'] }} بایت است
+                            @else
+                                ندارد
+                            @endif
                           </td>
                         </tr>
                         <tr style="height: 52px;">
-                          <td class="u-table-cell">طول محتوای تگ h1</td>
+                          <td class="u-table-cell">پروتکل امنیتی</td>
                           <td class="u-table-cell">
-
+                            @if($infos['infos']['ssl_verifyresult']==0)
+                             دارد
+                            @else
+                             ندارد
+                            @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">ریدایرکت</td>
+                          <td class="u-table-cell">
+                            @if($infos['status']==301 || $infos['status']==302)
+                             دارد
+                            @else
+                             ندارد
+                            @endif
                           </td>
                         </tr>
                       </tbody>
@@ -372,53 +434,6 @@
                 <div class="u-container-layout u-container-layout-4"></div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-      <section class="u-align-center u-clearfix u-section-2" id="sec-275f">
-        <div class="u-clearfix u-sheet u-sheet-1">
-          <h1 class="u-text u-text-default u-text-1">لینک های صفحه</h1>
-          <div class="u-expanded-width u-table u-table-responsive u-table-1">
-            <table class="u-table-entity u-table-entity-1">
-              <colgroup>
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-                <col width="25%">
-              </colgroup>
-              <tbody class="u-table-body">
-                <tr style="height: 64px;">
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Column 1</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Column 2</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Column 3</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Column 4</td>
-                </tr>
-                <tr style="height: 65px;">
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Row 1</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 65px;">
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Row 2</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 65px;">
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Row 3</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-                <tr style="height: 65px;">
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Row 4</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                  <td class="u-border-1 u-border-grey-30 u-table-cell">Description</td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
