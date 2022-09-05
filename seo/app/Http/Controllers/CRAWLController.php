@@ -47,8 +47,8 @@ class CRAWLController extends Controller
         return $r;
     }
 
-    public static function videos($url){
-        return CRAWLController::find($url,'video')->src;
-    }
+    // public static function videos($url){
+    //     return CRAWLController::find($url,'video')->src; // have bug
+    // }
 
 }

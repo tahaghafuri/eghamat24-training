@@ -34,9 +34,9 @@ class APIController extends Controller
         return CRAWLController::images($url,$type);
     }
 
-    public static function videos($url){
-        return CRAWLController::videos($url);
-    }
+    // public static function videos($url){
+    //     return CRAWLController::videos($url); // have bug
+    // }
 
     public static function p($url){
        return DOMController::p($url);

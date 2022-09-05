@@ -193,34 +193,100 @@
                       </colgroup>
                       <tbody class="u-table-alt-grey-5 u-table-body">
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">Column 1</td>
-                          <td class="u-table-cell">Column 2</td>
-                          <td class="u-table-cell">Column 3</td>
-                          <td class="u-table-cell">Column 4</td>
+                          <td class="u-table-cell">عنوان</td>
+                          <td class="u-table-cell">وضعیت</td>
                         </tr>
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">Row 1</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
+                          <td class="u-table-cell">عنوان صفحه</td>
+                          <td class="u-table-cell">
+                          @if(mb_strlen($infos['title']) < 70 || mb_strlen($infos['title']) < 50)
+                            کوتاه و نامناسب
+                          @else
+                            مناسب
+                          @endif
+                          </td>
                         </tr>
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">Row 2</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
+                          <td class="u-table-cell">توضیحات صفحه</td>
+                          <td class="u-table-cell">
+                            @if(mb_strlen($infos['title']) < 170 || mb_strlen($infos['title']) < 150)
+                            کوتاه و نامناسب
+                            @else
+                              مناسب
+                            @endif
+                          </td>
                         </tr>
                         <tr style="height: 51px;">
-                          <td class="u-table-cell">Row 3</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
+                          <td class="u-table-cell">المان caniocal</td>
+                          <td class="u-table-cell">
+                            @if(!empty($metas['caniocal']))
+                            دارد
+                            @else
+                            ندارد
+                            @endif
+                          </td>
                         </tr>
                         <tr style="height: 52px;">
-                          <td class="u-table-cell">Row 4</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
-                          <td class="u-table-cell">Description</td>
+                          <td class="u-table-cell">تگ robots</td>
+                          <td class="u-table-cell">
+                            @if(!empty($metas['robots']))
+                              @if(strstr($metas['robots'],'index') || strstr($metas['robots'],'follow') || (strstr($metas['robots'],'index') && strstr($metas['robots'],'follow')))
+                              فالو
+                              @elseif(strstr($metas['robots'],'noindex') || strstr($metas['robots'],'nofollow') || (strstr($metas['robots'],'noindex') && strstr($metas['robots'],'nofollow')))
+                              نوفالو
+                              @endif
+                            @else
+                              ندارد
+                            @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">مقایسه المان نام هدینگ و عنوان</td>
+                          <td class="u-table-cell">
+                            @if($h1s[0]!=$infos['title'])
+                              یکسان نیستند
+                            @else
+                              یکسانند
+                            @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">تگ های h2 تا h6</td>
+                          <td class="u-table-cell">
+                            @if(!empty($hs))
+                              دارد
+                            @else 
+                              ندارد
+                            @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">خصوصیات alt تصاویر</td>
+                          <td class="u-table-cell">
+                            @if(!empty($images[0]))
+                              @if(count($images[0])==count($images[1]))
+                                  دارد
+                              @else
+                              از {{ count($images[0]) }} تصویر فقط {{ count($images[1]) }} تصویر alt دارند
+                              @endif
+                            @else
+                              ندارد
+                            @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">طول محتوای تگ h1</td>
+                          <td class="u-table-cell">
+                            @if(count($h1s)!=0)
+                              @if(mb_strlen($h1s[0])<60)
+                                مناسب
+                              @else
+                                نامناسب
+                              @endif
+                            @else
+                             ندارد
+                            @endif
+                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -228,10 +294,71 @@
                 </div>
               </div>
               <div class="u-align-left u-container-style u-tab-pane u-white u-tab-pane-2" id="tab-14b7" role="tabpanel" aria-labelledby="link-tab-14b7">
-                <div class="u-container-layout u-valign-top u-container-layout-2">
-                  <p class="u-text u-text-default u-text-2">Sample text. Click to select the text box. Click again or double click to start editing the text. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.<br>
-                    <br>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.&nbsp;Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                  </p>
+                <div class="u-container-layout u-valign-top u-container-layout-1">
+                  <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                    <table class="u-table-entity">
+                      <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                      </colgroup>
+                      <tbody class="u-table-alt-grey-5 u-table-body">
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">عنوان</td>
+                          <td class="u-table-cell">وضعیت</td>
+                        </tr>
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">عنوان صفحه</td>
+                          <td class="u-table-cell">
+                          
+                          </td>
+                        </tr>
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">توضیحات صفحه</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">المان caniocal</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">تگ robots</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">مقایسه المان نام هدینگ و عنوان</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">تگ های h2 تا h6</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">خصوصیات alt تصاویر</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">طول محتوای تگ h1</td>
+                          <td class="u-table-cell">
+
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
               <div class="u-container-style u-tab-pane u-white u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
