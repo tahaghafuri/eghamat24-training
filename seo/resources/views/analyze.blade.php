@@ -177,7 +177,7 @@
                 <a class="u-active-palette-1-base u-button-style u-grey-10 u-tab-link u-text-active-white u-text-black u-tab-link-3" id="link-tab-2917" href="#tab-2917" role="tab" aria-controls="tab-2917" aria-selected="false">تجزیه و تحلیل</a>
               </li>
               <li class="u-tab-item u-tab-item-4" role="presentation">
-                <a class="u-active-palette-1-base u-button-style u-grey-10 u-tab-link u-text-active-white u-text-black u-tab-link-4" id="tab-93fc" href="#link-tab-93fc" role="tab" aria-controls="link-tab-93fc" aria-selected="false"> تجزیه و تحلیل لینک </a>
+                <a class="u-active-palette-1-base u-button-style u-grey-10 u-tab-link u-text-active-white u-text-black u-tab-link-4" id="tab-93fc" href="#link-tab-93fc" role="tab" aria-controls="link-tab-93fc" aria-selected="false"> بررسی لینک ها و تصاویر </a>
               </li>
             </ul>
             <div class="u-tab-content">
@@ -295,6 +295,16 @@
                               @else
                                 نامناسب
                               @endif
+                            @else
+                             ندارد
+                            @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 52px;">
+                          <td class="u-table-cell">پاراگرافت ها</td>
+                          <td class="u-table-cell">
+                            @if(!empty($ps))
+                              دارد
                             @else
                              ندارد
                             @endif
@@ -424,14 +434,131 @@
                 </div>
               </div>
               <div class="u-container-style u-tab-pane u-white u-tab-pane-3" id="tab-2917" role="tabpanel" aria-labelledby="link-tab-2917">
-                <div class="u-container-layout u-container-layout-3">
-                  <h4 class="u-text u-text-default u-text-3">Be The First To Review This Product!</h4>
-                  <p class="u-text u-text-default u-text-4">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>
-                  <a href="" class="u-btn u-button-style u-btn-1">write product review</a>
+                <div class="u-clearfix u-sheet u-sheet-1">
+                  <h1 class="u-text u-text-default u-text-1">تصاویر</h1>
+                  <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                    <table class="u-table-entity u-table-entity-1">
+                      <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                      </colgroup>
+                      <tbody class="u-table-body">
+                        <tr style="height: 64px;">
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">آدرس</td>
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">وضعیت</td>
+                        </tr>
+                        @foreach($images[0] as $img)
+                        <tr style="height: 65px;">
+                          <td class="u-border-1 u-border-grey-30 u-table-cell"><a href="{{ $img }}"></a></td>
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">{{ URLController::get_info($ln)['status'] }}</td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
+                <div class="u-clearfix u-sheet u-sheet-1">
+                  <h1 class="u-text u-text-default u-text-1">لینک ها</h1>
+                  <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                    <table class="u-table-entity u-table-entity-1">
+                      <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                      </colgroup>
+                      <tbody class="u-table-body">
+                        <tr style="height: 64px;">
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">آدرس</td>
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">وضعیت</td>
+                        </tr>
+                        @foreach($links[0] as $ln)
+                        <tr style="height: 65px;">
+                          <td class="u-border-1 u-border-grey-30 u-table-cell"><a href="{{ $ln }}"></a></td>
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">{{ URLController::get_info($ln)['status'] }}</td>
+                        </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!--div class="u-clearfix u-sheet u-sheet-1">
+                  <h1 class="u-text u-text-default u-text-1">ویدئو ها</h1>
+                  <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                    <table class="u-table-entity u-table-entity-1">
+                      <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                      </colgroup>
+                      <tbody class="u-table-body">
+                        <tr style="height: 64px;">
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">آدرس</td>
+                          <td class="u-border-1 u-border-grey-30 u-table-cell">وضعیت</td>
+                        </tr>
+                        <?php /*@foreach($videos[0] as $vd)
+                        <tr style="height: 65px;">
+                          <td class="u-border-1 u-border-grey-30 u-table-cell"><a href="{{ env('APP_URL').'/url/?go='.$vd }}"></a></td>
+                          <td class="u-border-1 u-border-grey-30 u-table-cell"></td>
+                        </tr>
+                        @endforeach*/?> 
+                      </tbody>
+                    </table>
+                  </div>
+                </div-->
               </div>
               <div class="u-container-style u-tab-pane u-white u-tab-pane-4" id="link-tab-93fc" role="tabpanel" aria-labelledby="tab-93fc">
-                <div class="u-container-layout u-container-layout-4"></div>
+                <div class="u-container-layout u-valign-top u-container-layout-1">
+                  <div class="u-expanded-width u-table u-table-responsive u-table-1">
+                    <table class="u-table-entity">
+                      <colgroup>
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                        <col width="25%">
+                      </colgroup>
+                      <tbody class="u-table-alt-grey-5 u-table-body">
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">عنوان</td>
+                          <td class="u-table-cell">وضعیت</td>
+                        </tr>
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">لینک ها</td>
+                          <td class="u-table-cell">
+                          @if(!empty($links[0]))
+                            OK
+                            <?php /*@if(count($links[0])==count($links[1]))
+                                مشکلی ندارد
+                            @else
+                                نیاز بهینه سازی
+                            @endif */ ?>
+                          @else
+                            ندارد
+                          @endif
+                          </td>
+                        </tr>
+                        <tr style="height: 51px;">
+                          <td class="u-table-cell">تصاویر</td>
+                          <td class="u-table-cell">
+                            @if(!empty($images[0]))
+                            OK
+                              <?php /*@if(count($images[0])==count($images[1]))
+                                  مشکلی ندارد
+                              @else
+                                  نیاز بهینه سازی
+                              @endif */?>
+                            @else
+                            ندارد
+                            @endif
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
