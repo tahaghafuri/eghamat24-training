@@ -8,7 +8,7 @@
         "php": "^8.0.2",
         "dimabdc/php-fast-simple-html-dom-parser": "^1.4",
         "guzzlehttp/guzzle": "*",
-        "laravel/framework": "^9.19",
+        "laravel/framework": "9.37.0",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "paquettg/php-html-parser": "^3.1",
